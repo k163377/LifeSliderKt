@@ -65,10 +65,10 @@ private fun checkInput(start: Int, end: Int){
 //男性の生存率計算
 fun calcMaleSurvivalRate(start: Int, end: Int): Double{
     checkInput(start, end)
-    return ((male[start] - male[end]).toDouble() / male[start].toDouble())
+    return 1.0 - ((male[start] - male[end]).toDouble() / male[start].toDouble())
 }
 //女性の生存率計算
 fun calcFemaleSurvivalRate(start: Int, end: Int): Double{
     checkInput(start, end)
-    return ((female[start] - female[end]).toDouble() / female[start].toDouble())
+    return 1.0 - ((female[start] - female[end]).toDouble() / female[start].toDouble())
 }

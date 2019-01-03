@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
     //rateのセット関数
     @SuppressLint("SetTextI18n")
     private fun setRate(){
-        rateText.text = "%.2f".format(calcMaleSurvivalRate(startSeekBar.progress, endSeekBar.progress) * 100.0)
+        val rate = calcMaleSurvivalRate(startSeekBar.progress, endSeekBar.progress) * 100.0
+        rateText.text = "${"%.2f".format(rate)}%"
     }
 
     //シークバーのセット関数、moveで動作量制御

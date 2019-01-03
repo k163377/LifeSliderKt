@@ -11,7 +11,15 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rate"/>
+            android:textSize="64sp"
+            android:id="@+id/rateText"
+            tools:text="100.00%"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/messageText"
+            tools:text="あなたがxx歳からyy歳まで生きられる確率"/>
 
     <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -35,7 +43,6 @@
                         android:background="@drawable/ic_remove_black_24dp"
                         android:onClick="onClickMinusStartBar"/>
                 <SeekBar
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
                         android:layout_height="wrap_content"
                         android:layout_weight="12"
                         android:max="105"
@@ -61,7 +68,6 @@
                         android:background="@drawable/ic_remove_black_24dp"
                         android:onClick="onClickMinusEndBar"/>
                 <SeekBar
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
                         android:layout_height="wrap_content"
                         android:layout_weight="12"
                         android:max="105"

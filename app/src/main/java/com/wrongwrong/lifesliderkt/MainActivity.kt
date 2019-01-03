@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import com.wrongwrong.lifesliderkt.calc.calcFemaleSurvivalRate
 import com.wrongwrong.lifesliderkt.calc.calcMaleSurvivalRate
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.max
@@ -15,7 +16,10 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun setTexts(){
         //生存率のセット
-        val rate = calcMaleSurvivalRate(startSeekBar.progress, endSeekBar.progress) * 100.0
+        val rate = when(maleRadio.isChecked){
+            true -> calcMaleSurvivalRate(startSeekBar.progress, endSeekBar.progress)
+            else -> calcFemaleSurvivalRate(startSeekBar.progress, endSeekBar.progress)
+        } * 100.0
         rateText.text = "${"%.2f".format(rate)}%"
         //テキストへのセット
         messageText.text = "あなたが${startSeekBar.progress}歳から${endSeekBar.progress}歳まで生きられる確率"
@@ -68,7 +72,10 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
-
+        //ラジオボタン変更時のリスナー
+        sexRadioGroup.setOnCheckedChangeListener { _, _ ->
+            setTexts()
+        }
         //初期値を設定
         setTexts()
     }

@@ -10,11 +10,14 @@ import kotlin.math.max
 import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
-    //rateのセット関数
+    //テキスト類のセット関数
     @SuppressLint("SetTextI18n")
-    private fun setRate(){
+    private fun setTexts(){
+        //生存率のセット
         val rate = calcMaleSurvivalRate(startSeekBar.progress, endSeekBar.progress) * 100.0
         rateText.text = "${"%.2f".format(rate)}%"
+        //テキストへのセット
+        messageText.text = "あなたが${startSeekBar.progress}歳から${endSeekBar.progress}歳まで生きられる確率"
     }
 
     //シークバーのセット関数、moveで動作量制御
@@ -27,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             endSeekBar.progress = startSeekBar.progress + 1
         }
         //テキスト系に反映
-        setRate()
+        setTexts()
     }
     private fun setEndBar(move: Int = 0){
         //スタートをセット
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             startSeekBar.progress = endSeekBar.progress - 1
         }
         //テキスト系に反映
-        setRate()
+        setTexts()
     }
     //シークバーをボタンで動かす用、タグを使って書き直せばもっとシンプルにできる
     fun onClickMinusStartBar(view: View) { setStartBar(-1) }
@@ -50,6 +53,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //初期値を設定
-        setRate()
+        setTexts()
     }
 }
